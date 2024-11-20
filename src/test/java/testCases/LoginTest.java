@@ -1,6 +1,5 @@
 package testCases;
 
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,17 +9,18 @@ import testBase.BaseClass;
 
 public class LoginTest extends BaseClass{
 	
-	@Test(priority = 1)
-	public void verify_Login()
+	@Test(priority = 1 )
+	public void verify_Login() throws InterruptedException 
 	{
 		HomePage hp=new HomePage(driver);
 		hp.clickcustomer();
 		
 		LoginPage lp=new LoginPage(driver);
-		lp.clickonPan();
-		lp.enterPan("AACCN8253B");
+//		lp.clickonPan();
+		Thread.sleep(3000);
+		lp.enterPan(p.getProperty("PAN"));
 		lp.clickContinue1();
-		lp.clickPwd("Atul@1234");
+		lp.clickPwd(p.getProperty("Pwd"));
 		lp.clickContinue2();
 		
 		String confmsg=lp.getConfirmation();
